@@ -1,7 +1,5 @@
+<img width="720" height="720" alt="WindowsPackageManager_SYSTEM" src="https://github.com/user-attachments/assets/c7669f3c-6e77-41ed-87f6-58ad134553f4" />
 # WinGet Installer for Microsoft Intune (System Context)
-
-<img width="1024" height="1024" alt="WindowsPackageManager_SYSTEM" src="https://github.com/user-attachments/assets/c7669f3c-6e77-41ed-87f6-58ad134553f4" />
-
 This PowerShell script automates the robust installation, configuration, and repair of the **Windows Package Manager (WinGet)** via Microsoft Intune running in the **System Context**.
 
 WinGet is primarily designed to run in a user context. Running it as `NT AUTHORITY\SYSTEM` (which Intune does by default) often results in missing dependencies, pathing issues, and execution failures. This script solves those problems by installing all necessary dependencies, configuring environment variables, and performing a self-repair using PowerShell 7.
