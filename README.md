@@ -3,7 +3,7 @@
 Instead of packaging every single application installer manually, this environment uses a dependency chain that enables a "Fire and Forget" mechanism for app deployment and updates.
 
 ## Layer 1: The Foundation (System Context Enabler)
-* **Component:** `WindowsPackageManager.ps1` (This repo)
+* **Component:** `WindowsPackageManager.ps1`
 * **Role:** Prepares the OS to run `winget.exe` as the **SYSTEM** account.
 * **Intune Assignment:** Assigned as **Required** to all devices.
 
@@ -35,11 +35,12 @@ Instead of packaging every single application installer manually, this environme
 ## How to add a new App (e.g., Notepad++)
 
 1. Find the App ID: `winget search Notepad++` -> ID: `Notepad++.Notepad++`
-2. Create a dummy `.intunewin` file (can contain an empty text file).
+2. Use a dummy `.intunewin` file (can contain an empty text file).
 3. Create a Win32 App in Intune:
     * **Install Command:**
-        `...powershell.exe ... -File "%ProgramFiles%\Winget-AutoUpdate\Winget-Install.ps1" -AppIDs Notepad++.Notepad++`
+        `...\powershell.exe" ... -File "%ProgramFiles%\Winget-AutoUpdate\Winget-Install.ps1" -AppIDs Notepad++.Notepad++`
     * **Uninstall Command:**
-        `...powershell.exe ... -Command "winget uninstall --id Notepad++.Notepad++"`
-    * **Detection Rule:** File `C:\Program Files\Notepad++\notepad++.exe` OR Registry.
+        `...\powershell.exe" ... -File "%ProgramFiles%\Winget-AutoUpdate\Winget-Install.ps1" -AppIDs Notepad++.Notepad++ -Uninstall`
+    * **Detection Rule:** Custome script [Winget-AutoUpdate (WAU) Detect](https://github.com/Romanitho/Winget-AutoUpdate/blob/main/Sources/Tools/Detection/winget-detect.ps1)
+   I use a script to automatic create a detect script based on this detect script and the winget app id.
     * **Dependencies:** Add **Winget-AutoUpdate** as a dependency.
