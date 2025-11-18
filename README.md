@@ -1,4 +1,4 @@
-# 🏗️ Winget-AutoUpdate Strategy
+# Winget-AutoUpdate Strategy
 
 Instead of packaging every single application installer manually, this environment uses a dependency chain that enables a "Fire and Forget" mechanism for app deployment and updates.
 
@@ -21,7 +21,7 @@ Instead of packaging every single application installer manually, this environme
 * **Dependency:** Depends on **Layer 2** (Winget-AutoUpdate).
 * **Install Command Example:**
   `"%systemroot%\sysnative\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File "%ProgramFiles%\Winget-AutoUpdate\Winget-Install.ps1" -AppIDs 7zip.7zip`
-## 🚀 Benefits of this Approach
+## Benefits of this Approach
 
 1. **Zero Packaging Maintenance:** You don't need to download `.exe` or `.msi` files and repackage them every time an app updates.
 2. **Automatic Updates:** WAU runs a scheduled task daily that checks and updates all installed apps automatically.
@@ -32,7 +32,7 @@ Instead of packaging every single application installer manually, this environme
     * Intune sees WAU needs **WinGet** -> Installs WinGet System.
     * Finally, 7-Zip is installed.
 
-## 📦 How to add a new App (e.g., Notepad++)
+## How to add a new App (e.g., Notepad++)
 
 1. Find the App ID: `winget search Notepad++` -> ID: `Notepad++.Notepad++`
 2. Create a dummy `.intunewin` file (can contain an empty text file).
