@@ -5,7 +5,7 @@ This PowerShell script automates the robust installation, configuration, and rep
 
 WinGet is primarily designed to run in a user context. Running it as `NT AUTHORITY\SYSTEM` (which Intune does by default) often results in missing dependencies, pathing issues, and execution failures. This script solves those problems by installing all necessary dependencies, configuring environment variables, and performing a self-repair using PowerShell 7.
 
-## 🚀 Features
+## Features
 
 * **Full Dependency Handling:** Checks for and installs:
   * Visual C++ Redistributable (2015-2022).
@@ -15,7 +15,7 @@ WinGet is primarily designed to run in a user context. Running it as `NT AUTHORI
 * **Self-Healing:** Installs **PowerShell 7** and uses the `Microsoft.WinGet.Client` module to run `Repair-WinGetPackageManager`, ensuring sources are correctly configured.
 * **Robust Logging:** Generates detailed logs in the standard Intune log directory.
 
-## 🤝 Acknowledgments & Credits
+## Acknowledgments & Credits
 
 This solution is built upon the hard work and research of the community. Special thanks to:
 
@@ -25,13 +25,13 @@ This solution is built upon the hard work and research of the community. Special
 * **Nialljen** for crucial insights on executing Windows Package Manager in the System Context.
   * Source: [Running Windows Package Manager (WinGet) in the System Context](https://nialljen.wordpress.com/2023/05/14/running-windows-package-manager-winget-in-the-system-context/)
 
-## 📋 Prerequisites
+## Prerequisites
 
 * **Microsoft Intune** tenant.
 * **Windows 10/11** devices (x64/x86/ARM64).
 * The script must be packaged as a `.intunewin` file using the [Microsoft Win32 Content Prep Tool](https://github.com/microsoft/Microsoft-Win32-Content-Prep-Tool).
 
-## 🛠️ Intune Deployment Settings
+## Intune Deployment Settings
 
 Create a new **Win32 App** in Intune using the following settings:
 
@@ -71,17 +71,17 @@ Unlike standard file presence checks or registry version checks, this script att
    * If the command returns an exit code of `0` (success) and outputs the version string, the script concludes that WinGet is fully functional.
    * If the execution fails (which is common in System context without proper dependencies), the script exits with error code `1`.
 
-## 📝 Logging
+## Logging
 
 Logs are written to the standard Intune Management Extension log folder for easy collection via the Intune portal ("Collect diagnostics").
 
 * **Log Path:** `C:\ProgramData\Microsoft\IntuneManagementExtension\Logs\winget-install.log`
 
-## ⚠️ Important Notes
+## Important Notes
 
 * **Exit Code 3010:** The script may return exit code `3010` (Soft Reboot). This is intentional. While `winget` might work immediately for some processes, a reboot ensures the updated `PATH` environment variable is recognized by all system processes.
 * **Network:** Ensure the target devices can reach `api.github.com`, `aka.ms`, and `github.com` to download the required installers.
 
-## 📜 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
