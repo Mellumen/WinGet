@@ -43,7 +43,7 @@ Create a new **Win32 App** in Intune using the following settings:
 
 * **Uninstall command:**
   ```powershell
-  powershell.exe -ExecutionPolicy Bypass -Command "Write-Host 'Uninstall not supported'"
+  %SystemRoot%\sysnative\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File uninstallWindowsPackageManager.ps1
   ```
 
 * **Install behavior:** System
