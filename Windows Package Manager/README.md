@@ -13,7 +13,7 @@ WinGet is primarily designed to run in a user context. Running it as `NT AUTHORI
 * **WinGet Installation:** Downloads and installs the latest `Microsoft.DesktopAppInstaller` (.msixbundle) directly from the official GitHub repository.
 * **System Context Fix:** Dynamically updates the `PATH` environment variable so `winget.exe` can be called directly by the System account without full paths.
 * **Self-Healing:** Installs **PowerShell 7** and uses the `Microsoft.WinGet.Client` module to run `Repair-WinGetPackageManager`, ensuring sources are correctly configured.
-* **Robust Logging:** Generates detailed logs in the standard Intune log directory.
+* **Logging:** Generates transcript logs in the standard Intune log directory, or custome path with parameter.
 
 ## Acknowledgments & Credits
 
