@@ -42,5 +42,5 @@ Instead of packaging every single application installer manually, this environme
     * **Uninstall Command:**
         `...\powershell.exe" ... -File "%ProgramFiles%\Winget-AutoUpdate\Winget-Install.ps1" -AppIDs Notepad++.Notepad++ -Uninstall`
     * **Detection Rule:** Custome script [Winget-AutoUpdate (WAU) Detect](https://github.com/Romanitho/Winget-AutoUpdate/blob/main/Sources/Tools/Detection/winget-detect.ps1)
-   - I use a script to automatic create a detect script based on this detect script and the winget app id as the only input from me.
+   - The script `make-IntuneDetectionScript.ps1` creates a detect script based on this detect script and the winget app id as the only input.
     * **Dependencies:** Add **Winget-AutoUpdate** as a dependency.
