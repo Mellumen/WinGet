@@ -19,7 +19,7 @@ WinGet is primarily designed to run in a user context. Running it as `NT AUTHORI
 
 This solution is built upon the hard work and research of the community. Special thanks to:
 
-* **fanuelsen (Horten kommune)** for the foundational work in the `Create Install-Winget-System.ps1` script.
+* **fanuelsen (Horten kommune)** for the foundational work in the `Install-Winget-System.ps1` script: https://github.com/Hortenkommune/hackcon2025/tree/main/winget-scripts
 * **Scloud** for the comprehensive logic regarding WindowsPackageManager installation scripts.
   * Source: [How to deploy Winget with Intune](https://scloud.work/how-to-winget-intune/)
 * **Nialljen** for crucial insights on executing Windows Package Manager in the System Context.
