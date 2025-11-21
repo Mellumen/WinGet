@@ -12,7 +12,11 @@ Instead of packaging every single application installer manually, this environme
 * **Role:** Handles the actual installation and daily updating of apps.
 * **Configuration:** WAU is configured via Intune ADMX Policies. See documentation here: [WAU Policies](https://github.com/Romanitho/Winget-AutoUpdate/tree/main/Sources/Policies).
 * **Install Command (Win32 App):**
-  `%systemroot%\sysnative\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -Command "winget install --id=Romanitho.Winget-AutoUpdate -e --accept-source-agreements --accept-package-agreements"`
+    The `.intunewin` package is built using `winget-install.ps1` and the `functions` folder (sourced from `Romanitho/Winget-AutoUpdate/Sources`).
+	
+    **Command:**
+    `"%systemroot%\sysnative\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File ".\winget-install.ps1" -AppIDs Romanitho.Winget-AutoUpdate`
+  
 * **Dependency:** Depends on **Layer 1** (Windows Package Manager).
 
 ## Layer 3: The Applications (7-Zip, etc.)

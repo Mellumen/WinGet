@@ -60,16 +60,17 @@ Create a new **Win32 App** in Intune using the following settings:
 
 #### DetectWindowsPackageManager.ps1
 
-This is a lightweight detection script designed to verify if the Windows Package Manager (WinGet) is correctly installed and **functional within the current context** (e.g., System context).
+This script verifies that the Windows Package Manager (Winget) is not only present but also **executable** within the System context.
 Unlike standard file presence checks or registry version checks, this script attempts to **execute** `winget.exe` with the `-v` (version) flag. This ensures that not only is the binary present, but all required dependencies (like VCLibs and UI.Xaml) are correctly loaded and the environment path is configured.
 
-##### 🛠️ How it Works
-1. **Locates WinGet:** It searches the `Program Files\WindowsApps` directory for the `Microsoft.DesktopAppInstaller` folder to find the actual `winget.exe` binary.
-   * *Note: It intelligently handles multiple versions by selecting the latest path found.*
+**Key Features:**
+* **Execution Validation:** Attempts to run `winget.exe --version` to ensure all dependencies (e.g., VCLibs) are correctly loaded and the package is fully provisioned for the System user.
+* **Version Compliance:** Parses the output version and compares it against a defined minimum requirement (default: `1.7.11132`).
+* **Robust Error Handling & Logging:** Captures non-zero exit codes to detect execution failures (e.g., missing prerequisites) and writes detailed diagnostics to `%ProgramData%\Microsoft\IntuneManagementExtension\Logs\Detect-WinGet.log` if non-compliant.
 
-2. **Functional Test:** It attempts to execute `winget.exe -v`.
-   * If the command returns an exit code of `0` (success) and outputs the version string, the script concludes that WinGet is fully functional.
-   * If the execution fails (which is common in System context without proper dependencies), the script exits with error code `1`.
+**Exit Codes:**
+* `0`: Compliant (Winget runs successfully and meets version requirements).
+* `1`: Non-Compliant (Triggers the remediation/install script).
 
 ## Logging
 
