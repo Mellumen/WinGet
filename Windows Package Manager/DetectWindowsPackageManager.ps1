@@ -24,7 +24,13 @@ $LogPath = "$env:ProgramData\Microsoft\IntuneManagementExtension\Logs\Detect-Win
 function Write-Log {
     param([string]$Message)
     try {
-        # Ensure log directory exists
+        # Check file size: If larger than 1MB, clear it to save space
+        if ((Test-Path $LogPath) -and ((Get-Item $LogPath).Length -gt 1MB)) {
+            Clear-Content $LogPath
+            # Recursive call: Log the rotation event (file is now empty, so it won't loop)
+            Write-Log "Log rotated (Size limit reached)"
+        }
+        # Write the timestamped message
         $timestamp = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
         Add-Content -Path $LogPath -Value "$timestamp - $Message"
     } catch {
