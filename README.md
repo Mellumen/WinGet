@@ -48,3 +48,11 @@ Instead of packaging every single application installer manually, this environme
     * **Detection Rule:** Custome script [Winget-AutoUpdate (WAU) Detect](https://github.com/Romanitho/Winget-AutoUpdate/blob/main/Sources/Tools/Detection/winget-detect.ps1)
         * **The script `make-IntuneDetectionScript.ps1` creates a detect script based on this detect script and the winget app id as the only input.
     * **Dependencies:** Add **Winget-AutoUpdate** as a dependency.
+
+## Log File Management for Winget-AutoUpdate
+
+The `detection.ps1` script monitors specific log files (`install.log` and `updates.log`) from Winget-AutoUpdate, checking if they are newer 
+than their corresponding copies in the Intune Management Extension logs directory. If any source log is more recent or its destination copy 
+is missing, the detection script signals that remediation is required. Subsequently, the `remediation.ps1` script executes, 
+copying these specific Winget-AutoUpdate log files to the Intune Management Extension logs directory, renaming them with a "WAU-" prefix to ensure easy identification. 
+This setup ensures that Intune centrally collects and keeps relevant Winget-AutoUpdate logs up-to-date for efficient monitoring and troubleshooting.
