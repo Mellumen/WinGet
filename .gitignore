@@ -1,0 +1,50 @@
+# Avhengighetskataloger (MÅ ALLTID IGNORERES)
+node_modules/
+/jspm_packages/
+# Eventuelt: /vendor/ hvis du bruker backend-rammeverk i tillegg
+
+# Bygge- og utdatafiler
+/build
+/dist
+/tmp
+/out
+/public/build
+/coverage # Testdekning
+# Eventuelt: Filer fra Webpack, Rollup, Vite, etc.
+# f.eks. .vite/
+GEMINI.md #KI init fil
+
+# Logger
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+# Rapporter fra Node.js diagnostikk
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Miljø- og Hemmelige Filer
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE-spesifikke Filer (Visual Studio Code)
+.vscode/*
+!/.vscode/settings.json
+!/.vscode/tasks.json
+!/.vscode/launch.json
+!/.vscode/extensions.json
+.history/ # VS Code History
+
+# IDE-spesifikke Filer (Andre IDEer)
+.idea/ # IntelliJ / WebStorm
+*.iml
+*.iws
+*.ipr
+*.swp # Vim swap files
+
+# OS-spesifikke Filer
+.DS_Store # macOS
+Thumbs.db # Windows
