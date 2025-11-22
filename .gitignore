@@ -12,8 +12,6 @@ node_modules/
 /coverage # Testdekning
 # Eventuelt: Filer fra Webpack, Rollup, Vite, etc.
 # f.eks. .vite/
-#init fil:
-GEMINI.md 
 
 # Logger
 *.log
@@ -49,4 +47,5 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 # OS-spesifikke Filer
 .DS_Store # macOS
 Thumbs.db # Windows
+# init fil:
 GEMINI.md
