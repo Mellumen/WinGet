@@ -12,7 +12,8 @@ node_modules/
 /coverage # Testdekning
 # Eventuelt: Filer fra Webpack, Rollup, Vite, etc.
 # f.eks. .vite/
-GEMINI.md #KI init fil
+#init fil:
+GEMINI.md 
 
 # Logger
 *.log
