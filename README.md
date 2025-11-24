@@ -45,7 +45,7 @@ Instead of packaging every single application installer manually, this environme
     * **Dependencies:** Add Winget-AutoUpdate as a dependency.
 
 ## Log File Management for Winget-AutoUpdate
-This process uses an Intune Proactive Remediations script to collect WAU logs.
+This process uses an Intune Remediations script to copy WAU logs to `...\IntuneManagementExtension\Logs\`.
 This is to ensure Intune "Collect diagnostics" also collects the latest WAU logs for monitoring and troubleshooting.
 
 * **Detection Script:** `WAULogs_detection.ps1`
