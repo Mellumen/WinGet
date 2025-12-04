@@ -254,18 +254,21 @@ function SetEnvironmentVariable {
 
     # ****** Set the new variable if changed
     if ($pathWasModified) {
-        $newPathString = $pathEntries -join ';'
-    
-        [Environment]::SetEnvironmentVariable("PATH", $newPathString, "User")
-    
-        Write-Host "SUCCESS: The SYSTEM account's User PATH has been updated."
-        Write-Warning "You must restart PowerShell (or the PC) for changes to take effect in new processes."
-    
-        # Update this *specific* process's $env:PATH to allow immediate usage (e.g., for repair functions)
-        $env:PATH = $newPathString + ";" + $env:PATH
-        
-        # Trigger a soft reboot code if changes were made
-        $script:ExitCode = 3010 
+        try {
+            [Environment]::SetEnvironmentVariable("PATH", $newPathString, "User")
+            Write-Host "SUCCESS: The SYSTEM account's User PATH has been updated."
+            
+            # Update this *specific* process's $env:PATH to allow immediate usage (e.g., for repair functions)
+            $env:PATH = $newPathString + ";" + $env:PATH
+            
+            # Trigger a soft reboot code if changes were made
+            $script:ExitCode = 3010 
+            
+            Write-Warning "You must restart PowerShell (or the PC) for changes to take effect in new processes."
+        } catch {
+            Write-Warning "FAILED to update User PATH. Error: $($_.Exception.Message)"
+            $script:ExitCode = 1
+        }
     } else {
         Write-Host "No changes necessary. User PATH is already correct."
     }
