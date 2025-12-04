@@ -24,7 +24,7 @@ param(
     [Parameter(Mandatory = $False)] [String] $LogPath
 )
 # --- Logging ---
-$PackageName = "winget"
+$PackageName = "windowsPackageManager"
 if (!($LogPath)) {
     # If LogPath is not set, default to the Intune log path
     $LogPath = "$env:ProgramData\Microsoft\IntuneManagementExtension\Logs\"
