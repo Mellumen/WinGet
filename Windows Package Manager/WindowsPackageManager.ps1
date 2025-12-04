@@ -235,6 +235,7 @@ function SetEnvironmentVariable {
     # ***** Get "User" path variable and split it
     # Note: We modify the "User" path even when running as System to ensure Winget works in System context.
     $currentUserPathString = [Environment]::GetEnvironmentVariable("PATH", "User")
+    Write-Host "DEBUG: Current User PATH retrieved: '$currentUserPathString'"
     
     # Remove empty entries and ensure uniqueness
     $pathEntries = $currentUserPathString.Split(';', [System.StringSplitOptions]::RemoveEmptyEntries) | Select-Object -Unique
