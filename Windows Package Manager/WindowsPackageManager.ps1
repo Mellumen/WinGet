@@ -237,8 +237,10 @@ function SetEnvironmentVariable {
     $currentUserPathString = [Environment]::GetEnvironmentVariable("PATH", "User")
     Write-Host "DEBUG: Current User PATH retrieved: '$currentUserPathString'"
     
-    # Remove empty entries and ensure uniqueness
-    $pathEntries = $currentUserPathString.Split(';', [System.StringSplitOptions]::RemoveEmptyEntries) | Select-Object -Unique
+    # Remove empty entries with Where-Object { $_ } and ensure uniqueness.
+    # @() ensures the result is always an array, even for a single path.
+    # Split the list to an array
+    $pathEntries = @($currentUserPathString -split ';' | Where-Object { $_ } | Select-Object -Unique)
 
     # ***** Iterate through paths and check if they exist
     $pathWasModified = $false 
@@ -255,6 +257,8 @@ function SetEnvironmentVariable {
     # ****** Set the new variable if changed
     if ($pathWasModified) {
         try {
+            #Join the entries 
+            $newPathString = $pathEntries -join ';'
             [Environment]::SetEnvironmentVariable("PATH", $newPathString, "User")
             Write-Host "SUCCESS: The SYSTEM account's User PATH has been updated."
             
