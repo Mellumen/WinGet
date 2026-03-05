@@ -35,6 +35,4 @@ if ($wingetList -match $AppToDetect) {
     exit 0
 }
 
-
-
 exit 1
